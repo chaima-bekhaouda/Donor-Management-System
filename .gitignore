@@ -1,2 +1,8 @@
+# Environments file
+.env
+
 # IDE's file
 /.idea/
+
+# Composer
+/vendor/
