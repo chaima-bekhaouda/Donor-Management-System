@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * DTO (Data Transfer Object) for Donor
+ */
 class DonorDTO
 {
     private int $id;
@@ -9,29 +12,25 @@ class DonorDTO
     private int $age;
     private float $weight;
     private bool $temporary_exclusion;
-    private string $reason_temporary_exclusion;
+    private ?string $reason_temporary_exclusion;
     private bool $permanent_exclusion;
-    private string $reason_permanent_exclusion;
-    private string $last_donation_date;
-    private int $blood_donations_year;
-    private string $last_plasma_date;
-    private int $plasma_donations_year;
+    private ?string $reason_permanent_exclusion;
+    private ?string $last_blood_donation_date;
+    private ?string $last_plasma_donation_date;
 
     function __construct(
-        int    $id,
-        string $name,
-        string $first_name,
-        string $sex,
-        int    $age,
-        float  $weight,
-        bool   $temporary_exclusion,
-        string $reason_temporary_exclusion,
-        bool   $permanent_exclusion,
-        string $reason_permanent_exclusion,
-        string $last_donation_date,
-        int    $blood_donations_year,
-        string $last_plasma_date,
-        int    $plasma_donations_year
+        int     $id,
+        string  $name,
+        string  $first_name,
+        string  $sex,
+        int     $age,
+        float   $weight,
+        bool    $temporary_exclusion,
+        ?string $reason_temporary_exclusion,
+        bool    $permanent_exclusion,
+        ?string $reason_permanent_exclusion,
+        ?string $last_blood_donation_date,
+        ?string $last_plasma_donation_date,
     )
     {
         $this->id = $id;
@@ -44,10 +43,8 @@ class DonorDTO
         $this->reason_temporary_exclusion = $reason_temporary_exclusion;
         $this->permanent_exclusion = $permanent_exclusion;
         $this->reason_permanent_exclusion = $reason_permanent_exclusion;
-        $this->last_donation_date = $last_donation_date;
-        $this->blood_donations_year = $blood_donations_year;
-        $this->last_plasma_date = $last_plasma_date;
-        $this->plasma_donations_year = $plasma_donations_year;
+        $this->last_blood_donation_date = $last_blood_donation_date;
+        $this->last_plasma_donation_date = $last_plasma_donation_date;
     }
 
     // Getters and setters
@@ -121,12 +118,12 @@ class DonorDTO
         $this->temporary_exclusion = $temporary_exclusion;
     }
 
-    public function getReasonTemporaryExclusion(): string
+    public function getReasonTemporaryExclusion(): ?string
     {
         return $this->reason_temporary_exclusion;
     }
 
-    public function setReasonTemporaryExclusion(string $reason_temporary_exclusion): void
+    public function setReasonTemporaryExclusion(?string $reason_temporary_exclusion): void
     {
         $this->reason_temporary_exclusion = $reason_temporary_exclusion;
     }
@@ -141,54 +138,34 @@ class DonorDTO
         $this->permanent_exclusion = $permanent_exclusion;
     }
 
-    public function getReasonPermanentExclusion(): string
+    public function getReasonPermanentExclusion(): ?string
     {
         return $this->reason_permanent_exclusion;
     }
 
-    public function setReasonPermanentExclusion(string $reason_permanent_exclusion): void
+    public function setReasonPermanentExclusion(?string $reason_permanent_exclusion): void
     {
         $this->reason_permanent_exclusion = $reason_permanent_exclusion;
     }
 
-    public function getLastDonationDate(): string
+    public function getLastBloodDonationDate(): ?string
     {
-        return $this->last_donation_date;
+        return $this->last_blood_donation_date;
     }
 
-    public function setLastDonationDate(string $last_donation_date): void
+    public function setLastBloodDonationDate(?string $last_blood_donation_date): void
     {
-        $this->last_donation_date = $last_donation_date;
+        $this->last_blood_donation_date = $last_blood_donation_date;
     }
 
-    public function getBloodDonationsYear(): int
+    public function getLastPlasmaDonationDate(): ?string
     {
-        return $this->blood_donations_year;
+        return $this->last_plasma_donation_date;
     }
 
-    public function setBloodDonationsYear(int $blood_donations_year): void
+    public function setLastPlasmaDonationDate(?string $last_plasma_donation_date): void
     {
-        $this->blood_donations_year = $blood_donations_year;
-    }
-
-    public function getLastPlasmaDate(): string
-    {
-        return $this->last_plasma_date;
-    }
-
-    public function setLastPlasmaDate(string $last_plasma_date): void
-    {
-        $this->last_plasma_date = $last_plasma_date;
-    }
-
-    public function getPlasmaDonationsYear(): int
-    {
-        return $this->plasma_donations_year;
-    }
-
-    public function setPlasmaDonationsYear(int $plasma_donations_year): void
-    {
-        $this->plasma_donations_year = $plasma_donations_year;
+        $this->last_plasma_donation_date = $last_plasma_donation_date;
     }
 
     public function toArray(): array
@@ -204,10 +181,8 @@ class DonorDTO
             'reason_temporary_exclusion' => $this->reason_temporary_exclusion,
             'permanent_exclusion' => $this->permanent_exclusion,
             'reason_permanent_exclusion' => $this->reason_permanent_exclusion,
-            'last_donation_date' => $this->last_donation_date,
-            'blood_donations_year' => $this->blood_donations_year,
-            'last_plasma_date' => $this->last_plasma_date,
-            'plasma_donations_year' => $this->plasma_donations_year
+            'last_blood_donation_date' => $this->last_blood_donation_date,
+            'last_plasma_donation_date' => $this->last_plasma_donation_date,
         ];
     }
 }
