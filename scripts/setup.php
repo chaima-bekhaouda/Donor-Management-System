@@ -10,7 +10,7 @@ try {
 
     // If the table does not exist, create it
     if ($stmt->rowCount() === 0) {
-        echo "Creating table...";
+        echo "Creating table..." . '<br>';
         $pdo->exec("
             CREATE TABLE IF NOT EXISTS donors (
                 id INT AUTO_INCREMENT PRIMARY KEY,
@@ -30,7 +30,7 @@ try {
             )
         ");
     } else {
-        echo "Table already exists. Skipping table creation.";
+        echo "Table already exists. Skipping table creation." . '<br>';
     }
 
     // Check if the table is empty
@@ -40,7 +40,7 @@ try {
 
     // If the table is empty, insert some data
     if ($count === 0) {
-        echo "Inserting donor...";
+        echo "Inserting donors..." . '<br>';
         $stmt = $pdo->prepare("
             INSERT INTO donors (name, first_name, email, phone_number, sex, age, weight, temporary_exclusion, reason_temporary_exclusion, permanent_exclusion, reason_permanent_exclusion, last_blood_donation_date, last_plasma_donation_date)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
@@ -75,9 +75,54 @@ try {
             $stmt->execute($donor);
         }
     } else {
-        echo "Table already contains data. Skipping data insertion.";
+        echo "Table already contains data. Skipping data insertion." . '<br>';
+    }
+
+    // Check if the admins table exists
+    $stmt = $pdo->prepare("SHOW TABLES LIKE 'admins'");
+    $stmt->execute();
+
+    // If the table does not exist, create it
+    if ($stmt->rowCount() === 0) {
+        echo "Creating admins table..." . '<br>';
+        $pdo->exec("
+            CREATE TABLE IF NOT EXISTS admins (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                username VARCHAR(255) NOT NULL,
+                password VARCHAR(255) NOT NULL
+            )
+        ");
+    } else {
+        echo "Admins table already exists. Skipping table creation." . '<br>';
+    }
+
+    // Check if the admins table is empty
+    $stmt = $pdo->prepare("SELECT COUNT(*) FROM admins");
+    $stmt->execute();
+    $count = $stmt->fetchColumn();
+
+    // If the table is empty, insert some data
+    if ($count === 0) {
+        echo "Inserting admins..." . '<br>';
+        $stmt = $pdo->prepare("
+            INSERT INTO admins (username, password)
+            VALUES (?, ?)
+        ");
+
+        // Define admins data
+        $admins = [
+            // Admin user with username 'admin' and password 'password'
+            ['admin', password_hash('password', PASSWORD_DEFAULT)]
+        ];
+
+        // Insert each admin into the database
+        foreach ($admins as $admin) {
+            $stmt->execute($admin);
+        }
+    } else {
+        echo "Admins table already contains data. Skipping data insertion." . '<br>';
     }
 } catch (PDOException $e) {
     // Display error message if any exception occurs
-    echo "Error: " . $e->getMessage();
+    echo "Error: " . $e->getMessage() . '<br>';
 }
