@@ -15,4 +15,31 @@ class DonorController
     {
         require_once '../src/views/index_view.php';
     }
+
+    public function create(): void
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $donor = new DonorDTO(
+                (int)null,
+                $_POST['name'],
+                $_POST['first_name'],
+                $_POST['email'],
+                $_POST['phone_number'],
+                $_POST['sex'],
+                $_POST['age'],
+                $_POST['weight'],
+                isset($_POST['temporary_exclusion']),
+                $_POST['reason_temporary_exclusion'],
+                isset($_POST['permanent_exclusion']),
+                $_POST['reason_permanent_exclusion'],
+                $_POST['last_blood_donation_date'],
+                $_POST['last_plasma_donation_date'],
+            );
+            $this->donorModel->save($donor);
+            header('Location: index.php');
+            exit();
+        }
+
+        require_once '../src/views/add_view.php';
+    }
 }

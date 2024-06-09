@@ -68,8 +68,8 @@ class DonorModel
      */
     private function insert(DonorDTO $donor): void
     {
-        $query = $this->pdo->prepare('INSERT INTO donors (name, first_name, email, phone_number, sex, age, weight, temporary_exclusion, reason_temporary_exclusion, permanent_exclusion, reason_permanent_exclusion, last_blood_donation_date, last_plasma_donation_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
-        $query->execute($this->getDonorData($donor));
+        $query = $this->pdo->prepare('INSERT INTO donors (name, first_name, email, phone_number, sex, age, weight, temporary_exclusion, reason_temporary_exclusion, permanent_exclusion, reason_permanent_exclusion, last_blood_donation_date, last_plasma_donation_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
+        $query->execute($this->getDonorDataForInsertAndUpdate($donor));
     }
 
     /**
@@ -79,7 +79,7 @@ class DonorModel
     private function update(DonorDTO $donor): void
     {
         $query = $this->pdo->prepare('UPDATE donors SET name = ?, first_name = ?, email = ?, phone_numebr = ?, sex = ?, age = ?, weight = ?, temporary_exclusion = ?, reason_temporary_exclusion = ?, permanent_exclusion = ?, reason_permanent_exclusion = ?, last_blood_donation_date = ?, last_plasma_donation_date = ? WHERE id = ?');
-        $query->execute(array_merge($this->getDonorData($donor), [$donor->getId()]));
+        $query->execute(array_merge($this->getDonorDataForInsertAndUpdate($donor), [$donor->getId()]));
     }
 
     /**
@@ -125,5 +125,32 @@ class DonorModel
     private function getDonorData(DonorDTO $donor): array
     {
         return $donor->toArray();
+    }
+
+    /**
+     * Get donor data as an array to be used in an insert or update query
+     * @param DonorDTO $donor
+     * @return array
+     */
+    private function getDonorDataForInsertAndUpdate(DonorDTO $donor): array
+    {
+        $donorData = $donor->toArray();
+        unset($donorData['id']); // Remove the 'id' element
+
+        // Ensure all fields are included
+        $fields = ['name', 'first_name', 'email', 'phone_number', 'sex', 'age', 'weight', 'temporary_exclusion', 'reason_temporary_exclusion', 'permanent_exclusion', 'reason_permanent_exclusion', 'last_blood_donation_date', 'last_plasma_donation_date'];
+        foreach ($fields as $field) {
+            if (!array_key_exists($field, $donorData)) {
+                $donorData[$field] = null;
+            }
+        }
+
+        // Ensure the order of fields matches the order in the SQL query
+        $orderedDonorData = [];
+        foreach ($fields as $field) {
+            $orderedDonorData[$field] = $donorData[$field];
+        }
+
+        return array_values($orderedDonorData); // return indexed array instead of associative
     }
 }
