@@ -27,7 +27,7 @@
         <p><strong>Last Plasma Donation Date:</strong> <?= $donor->getLastPlasmaDonationDate() ?></p>
         <p><strong>Can donate blood:</strong>
             <span
-                class="<?= $donorCanDonate['canDonateBlood'] ? 'green' : 'red' ?>"><?= $donorCanDonate['canDonateBlood'] ? 'Yes' : 'No' ?>
+                class="<?= $donorCanDonate ? 'green' : 'red' ?>"><?= $donorCanDonate ? 'Yes' : 'No' ?>
             </span>
         </p>
     </div>
