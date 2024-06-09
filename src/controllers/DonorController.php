@@ -1,5 +1,4 @@
 <?php
-require_once '../config/Database.php';
 require_once '../src/models/DonorModel.php';
 
 class DonorController
