@@ -12,6 +12,22 @@ h2 {
 }
 
 /* Container styles */
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-container a {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
 .search-container {
     max-width: 800px;
     margin: 50px auto;

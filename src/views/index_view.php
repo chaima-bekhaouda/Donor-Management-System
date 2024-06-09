@@ -9,7 +9,10 @@
 <body>
 
 <div class="search-container">
-    <h2>Search for Donors</h2>
+    <div class="header-container">
+        <h2>Search for Donors</h2>
+        <a href="logout.php">Logout</a>
+    </div>
     <form id="search-form" action="search.php" method="get">
         <div id="criteria-container">
             <div class="criteria">
