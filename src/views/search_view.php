@@ -23,6 +23,9 @@
             </div>
         <?php endforeach; ?>
     </div>
+    <div class="button-container">
+        <a href="index.php">Back to Search</a>
+    </div>
 </div>
 
 </body>
