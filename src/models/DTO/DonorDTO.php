@@ -8,6 +8,8 @@ class DonorDTO
     private int $id;
     private string $name;
     private string $first_name;
+    private string $email;
+    private string $phone_number;
     private string $sex;
     private int $age;
     private float $weight;
@@ -22,6 +24,8 @@ class DonorDTO
         int     $id,
         string  $name,
         string  $first_name,
+        string  $email,
+        string  $phone_number,
         string  $sex,
         int     $age,
         float   $weight,
@@ -36,6 +40,8 @@ class DonorDTO
         $this->id = $id;
         $this->name = $name;
         $this->first_name = $first_name;
+        $this->email = $email;
+        $this->phone_number = $phone_number;
         $this->sex = $sex;
         $this->age = $age;
         $this->weight = $weight;
@@ -76,6 +82,26 @@ class DonorDTO
     public function setFirstName(string $first_name): void
     {
         $this->first_name = $first_name;
+    }
+
+    public function getEmail(): string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): void
+    {
+        $this->email = $email;
+    }
+
+    public function getPhoneNumber(): string
+    {
+        return $this->phone_number;
+    }
+
+    public function setPhoneNumber(string $phone_number): void
+    {
+        $this->phone_number = $phone_number;
     }
 
     public function getSex(): string
@@ -174,6 +200,8 @@ class DonorDTO
             'id' => $this->id,
             'name' => $this->name,
             'first_name' => $this->first_name,
+            'email' => $this->email,
+            'phone_number' => $this->phone_number,
             'sex' => $this->sex,
             'age' => $this->age,
             'weight' => $this->weight,

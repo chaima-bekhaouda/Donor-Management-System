@@ -68,7 +68,7 @@ class DonorModel
      */
     private function insert(DonorDTO $donor): void
     {
-        $query = $this->pdo->prepare('INSERT INTO donors (name, first_name, sex, age, weight, temporary_exclusion, reason_temporary_exclusion, permanent_exclusion, reason_permanent_exclusion, last_blood_donation_date, last_plasma_donation_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
+        $query = $this->pdo->prepare('INSERT INTO donors (name, first_name, email, phone_number, sex, age, weight, temporary_exclusion, reason_temporary_exclusion, permanent_exclusion, reason_permanent_exclusion, last_blood_donation_date, last_plasma_donation_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
         $query->execute($this->getDonorData($donor));
     }
 
@@ -78,7 +78,7 @@ class DonorModel
      */
     private function update(DonorDTO $donor): void
     {
-        $query = $this->pdo->prepare('UPDATE donors SET name = ?, first_name = ?, sex = ?, age = ?, weight = ?, temporary_exclusion = ?, reason_temporary_exclusion = ?, permanent_exclusion = ?, reason_permanent_exclusion = ?, last_blood_donation_date = ?, last_plasma_donation_date = ? WHERE id = ?');
+        $query = $this->pdo->prepare('UPDATE donors SET name = ?, first_name = ?, email = ?, phone_numebr = ?, sex = ?, age = ?, weight = ?, temporary_exclusion = ?, reason_temporary_exclusion = ?, permanent_exclusion = ?, reason_permanent_exclusion = ?, last_blood_donation_date = ?, last_plasma_donation_date = ? WHERE id = ?');
         $query->execute(array_merge($this->getDonorData($donor), [$donor->getId()]));
     }
 
@@ -103,6 +103,8 @@ class DonorModel
             $result['id'],
             $result['name'],
             $result['first_name'],
+            $result['email'],
+            $result['phone_number'],
             $result['sex'],
             $result['age'],
             $result['weight'],
