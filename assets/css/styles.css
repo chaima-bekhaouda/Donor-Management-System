@@ -147,10 +147,10 @@ form {
 }
 
 /* Donor details styles */
-.yes {
+.green {
     color: green;
 }
 
-.no {
+.red {
     color: red;
 }
