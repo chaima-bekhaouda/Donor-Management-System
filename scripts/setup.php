@@ -49,25 +49,25 @@ try {
         // Define donors data
         $donors = [
             // John Doe is a male donor with no exclusions and has not donated before
-            ['John', 'Doe', 'john.doe@example.com', '1234567890', 'M', 30, 75.5, false, null, false, null, null, null],
+            ['John', 'Doe', 'john.doe@example.com', '1234567890', 'M', 30, 75.5, 0, null, 0, null, null, null],
 
             // Scarlet Doe is a female donor with no exclusions and has donated blood before
-            ['Scarllet', 'Doe', 'scarlet.doe@example.com', '0987654321', 'F', 28, 65.5, false, null, false, null, '2021-01-01', null],
+            ['Scarllet', 'Doe', 'scarlet.doe@example.com', '0987654321', 'F', 28, 65.5, 0, null, 0, null, '2021-01-01', null],
 
             // Jack Doe is a male donor with no exclusions and has donated plasma before
-            ['Jack', 'Doe', 'jack.doe@example.com', '1234567890', 'M', 30, 75.5, false, null, false, null, null, '2021-01-01'],
+            ['Jack', 'Doe', 'jack.doe@example.com', '1234567890', 'M', 30, 75.5, 0, null, 0, null, null, '2021-01-01'],
 
             // Alice Doe is a donor of other gender with no exclusions and has donated both blood and plasma before
-            ['Alice', 'Doe', 'alice.doe@example.com', '1122334455', 'O', 25, 70.5, false, null, false, null, '2021-01-01', '2021-01-01'],
+            ['Alice', 'Doe', 'alice.doe@example.com', '1122334455', 'O', 25, 70.5, 0, null, 0, null, '2021-01-01', '2021-01-01'],
 
             // Jane Doe is a female donor with a temporary exclusion for medical reasons
-            ['Jane', 'Doe', 'jane.doe@example.com', '0987654321', 'F', 28, 65.5, true, 'Medical reasons', false, null, null, null],
+            ['Jane', 'Doe', 'jane.doe@example.com', '0987654321', 'F', 28, 65.5, 1, 'Medical reasons', 0, null, null, null],
 
             // Alex Doe is a donor of other gender with a permanent exclusion for age reasons
-            ['Alex', 'Doe', 'alex.doe@example.com', '1122334455', 'O', 25, 70.5, false, null, true, 'Age reasons', null, null],
+            ['Alex', 'Doe', 'alex.doe@example.com', '1122334455', 'O', 25, 70.5, 0, null, 1, 'Age reasons', null, null],
 
             // Bob Doe is a donor of other gender with both temporary and permanent exclusions for medical and age reasons respectively
-            ['Bob', 'Doe', 'bob.doe@example.com', '5544332211', 'O', 35, 80.5, true, 'Medical reasons', true, 'Age reasons', null, null]
+            ['Bob', 'Doe', 'bob.doe@example.com', '5544332211', 'O', 35, 80.5, 1, 'Medical reasons', 1, 'Age reasons', null, null]
         ];
 
         // Insert each donor into the database
