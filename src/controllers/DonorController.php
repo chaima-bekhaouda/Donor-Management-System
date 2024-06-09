@@ -12,7 +12,7 @@ class DonorController
 
     public function index(): void
     {
-        require_once '../src/views/index_view.php';
+        require_once __DIR__ . '/../views/index_view.php';
     }
 
     public function create(): void
@@ -39,9 +39,12 @@ class DonorController
             exit();
         }
 
-        require_once '../src/views/add_view.php';
+        require_once __DIR__ . '/../views/add_view.php';
     }
 
+    /**
+     * @throws Exception
+     */
     public function search(): void
     {
         $attributes = $_GET['criteria']; // ['name', 'first_name'...]
@@ -51,15 +54,18 @@ class DonorController
 
         $donors = $this->donorModel->search($criteria);
 
-        require_once '../src/views/search_view.php';
+        require_once __DIR__ . '/../views/search_view.php';
     }
 
+    /**
+     * @throws Exception
+     */
     public function donor_details(): void
     {
         $donorId = $_GET['id'];
         $donor = $this->donorModel->getById($donorId);
         $donorCanDonate = $this->donorModel->canDonateAgain($donorId);
 
-        require_once '../src/views/donor_details_view.php';
+        require_once __DIR__ . '/../views/donor_details_view.php';
     }
 }

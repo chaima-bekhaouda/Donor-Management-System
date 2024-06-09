@@ -25,6 +25,6 @@ class UserController
             }
         }
 
-        require_once '../src/views/login_view.php';
+        require_once __DIR__ . '/../views/login_view.php';
     }
 }
