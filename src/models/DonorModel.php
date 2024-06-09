@@ -140,21 +140,21 @@ class DonorModel
 
         // Check if the donor has a temporary exclusion
         if (!$donor->getTemporaryExclusion()) {
-            $lastBloodDonationDate = new DateTime($donor->getLastBloodDonationDate());
-            $lastPlasmaDonationDate = new DateTime($donor->getLastPlasmaDonationDate());
+            $lastBloodDonationDate = $donor->getLastBloodDonationDate() ? new DateTime($donor->getLastBloodDonationDate()) : null;
+            $lastPlasmaDonationDate = $donor->getLastPlasmaDonationDate() ? new DateTime($donor->getLastPlasmaDonationDate()) : null;
             $now = new DateTime();
 
             // Check if 56 days have passed since the last blood donation
-            if ($now->diff($lastBloodDonationDate)->days >= 56) {
+            if ($lastBloodDonationDate && $now->diff($lastBloodDonationDate)->days >= 56) {
                 $canDonateBlood = true;
-            } else {
+            } elseif ($lastBloodDonationDate) {
                 $nextBloodDonationDate = $lastBloodDonationDate->add(new DateInterval('P56D'))->format('Y-m-d');
             }
 
             // Check if 28 days have passed since the last plasma donation
-            if ($now->diff($lastPlasmaDonationDate)->days >= 28) {
+            if ($lastPlasmaDonationDate && $now->diff($lastPlasmaDonationDate)->days >= 28) {
                 $canDonatePlasma = true;
-            } else {
+            } elseif ($lastPlasmaDonationDate) {
                 $nextPlasmaDonationDate = $lastPlasmaDonationDate->add(new DateInterval('P28D'))->format('Y-m-d');
             }
         }
