@@ -1,0 +1,106 @@
+/* Global styles */
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+h2 {
+    color: #0056b3;
+}
+
+/* Container styles */
+.search-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Form styles */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Criteria styles */
+.criteria {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.criteria select, .criteria input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.criteria button.remove-criteria {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.criteria button.remove-criteria:hover {
+    background-color: #e60000;
+}
+
+/* Button container styles */
+.button-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.button-container button, .button-container a {
+    flex: 1 1 48%;
+    text-align: center;
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    padding: 15px 0;
+    text-decoration: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.button-container button:hover, .button-container a:hover {
+    background-color: #004494;
+}
+
+.button-container a#add-donor {
+    background-color: #28a745;
+    flex: 1 1 100%;
+    margin-top: 10px;
+}
+
+.button-container a#add-donor:hover {
+    background-color: #218838;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+    .criteria {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .button-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .button-container button, .button-container a {
+        flex: 1 1 100%;
+    }
+}
