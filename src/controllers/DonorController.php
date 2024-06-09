@@ -13,8 +13,6 @@ class DonorController
 
     public function index(): void
     {
-        $donors = $this->donorModel->getAll();
-
         require_once '../src/views/index_view.php';
     }
 }
