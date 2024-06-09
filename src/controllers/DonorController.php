@@ -54,6 +54,14 @@ class DonorController
 
         $donors = $this->donorModel->search($criteria);
 
+        // Create an array to hold the canDonateAgain data for each donor
+        $donorsCanDonate = [];
+
+        // Loop through each donor and get their canDonateAgain data
+        foreach ($donors as $donor) {
+            $donorsCanDonate[$donor->getId()] = $this->donorModel->canDonateAgain($donor->getId());
+        }
+
         require_once __DIR__ . '/../views/search_view.php';
     }
 

@@ -20,6 +20,9 @@
                 <a href="donor_details.php?id=<?= $donor->getId() ?>">
                     <?= $donor->getName() ?>
                     <?= $donor->getFirstName() ?>
+                    <span class="align-right <?= $donorsCanDonate[$donor->getId()] ? 'green' : 'red'; ?>">
+                        <?= $donorsCanDonate[$donor->getId()] ? 'Can donate' : 'Cannot donate'; ?>
+                    </span>
                 </a>
             </div>
         <?php endforeach; ?>
