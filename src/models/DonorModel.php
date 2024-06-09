@@ -133,8 +133,18 @@ class DonorModel
     {
         $donor = $this->getById($donorId);
 
-        // Check if the donor has a temporary exclusion
-        if ($donor->getTemporaryExclusion()) {
+        // Check if the donor has a temporary or permanent exclusion
+        if ($donor->getTemporaryExclusion() || $donor->getPermanentExclusion()) {
+            return false;
+        }
+
+        // Check if the donor is at least 18 years old
+        if ($donor->getAge() < 18) {
+            return false;
+        }
+
+        // Check if the donor weighs at least 50 kg
+        if ($donor->getWeight() < 50) {
             return false;
         }
 
