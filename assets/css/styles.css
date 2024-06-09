@@ -129,3 +129,12 @@ form {
     color: #333;
     display: block; /* Make the link take up the whole space of the donor-item */
 }
+
+/* Donor details styles */
+.yes {
+    color: green;
+}
+
+.no {
+    color: red;
+}

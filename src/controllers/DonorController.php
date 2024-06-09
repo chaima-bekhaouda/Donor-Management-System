@@ -54,4 +54,13 @@ class DonorController
 
         require_once '../src/views/search_view.php';
     }
+
+    public function donor_details(): void
+    {
+        $donorId = $_GET['id'];
+        $donor = $this->donorModel->getById($donorId);
+        $donorCanDonate = $this->donorModel->canDonateAgain($donorId);
+
+        require_once '../src/views/donor_details_view.php';
+    }
 }

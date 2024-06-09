@@ -124,6 +124,50 @@ class DonorModel
     }
 
     /**
+     * Determine if a donor can donate blood and/or plasma again
+     * @param int $donorId
+     * @return array
+     * @throws Exception
+     */
+    public function canDonateAgain(int $donorId): array
+    {
+        $donor = $this->getById($donorId);
+
+        $canDonateBlood = false;
+        $canDonatePlasma = false;
+        $nextBloodDonationDate = null;
+        $nextPlasmaDonationDate = null;
+
+        // Check if the donor has a temporary exclusion
+        if (!$donor->getTemporaryExclusion()) {
+            $lastBloodDonationDate = new DateTime($donor->getLastBloodDonationDate());
+            $lastPlasmaDonationDate = new DateTime($donor->getLastPlasmaDonationDate());
+            $now = new DateTime();
+
+            // Check if 56 days have passed since the last blood donation
+            if ($now->diff($lastBloodDonationDate)->days >= 56) {
+                $canDonateBlood = true;
+            } else {
+                $nextBloodDonationDate = $lastBloodDonationDate->add(new DateInterval('P56D'))->format('Y-m-d');
+            }
+
+            // Check if 28 days have passed since the last plasma donation
+            if ($now->diff($lastPlasmaDonationDate)->days >= 28) {
+                $canDonatePlasma = true;
+            } else {
+                $nextPlasmaDonationDate = $lastPlasmaDonationDate->add(new DateInterval('P28D'))->format('Y-m-d');
+            }
+        }
+
+        return [
+            'canDonateBlood' => $canDonateBlood,
+            'nextBloodDonationDate' => $nextBloodDonationDate,
+            'canDonatePlasma' => $canDonatePlasma,
+            'nextPlasmaDonationDate' => $nextPlasmaDonationDate,
+        ];
+    }
+
+    /**
      * Create a DonorDTO object from a database result
      * @param array $result
      * @return DonorDTO
