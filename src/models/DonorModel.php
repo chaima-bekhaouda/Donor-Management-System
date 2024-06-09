@@ -50,6 +50,37 @@ class DonorModel
     }
 
     /**
+     * Search donors in the database based on criteria
+     * @param array $criteria
+     * @return array
+     */
+    public function search(array $criteria): array
+    {
+        $query = 'SELECT * FROM donors WHERE ';
+        $values = [];
+
+        foreach ($criteria as $attribute => $value) {
+            $query .= "$attribute = ? AND ";
+            $values[] = $value;
+        }
+
+        // Remove the last 'AND '
+        $query = substr($query, 0, -4);
+
+        $stmt = $this->pdo->prepare($query);
+        $stmt->execute($values);
+
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $donors = [];
+        foreach ($results as $result) {
+            $donors[] = $this->createDonorFromResult($result);
+        }
+
+        return $donors;
+    }
+
+    /**
      * Save a donor in the database (insert or update)
      * @param DonorDTO $donor
      */

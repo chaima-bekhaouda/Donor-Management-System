@@ -42,4 +42,16 @@ class DonorController
 
         require_once '../src/views/add_view.php';
     }
+
+    public function search(): void
+    {
+        $attributes = $_GET['criteria']; // ['name', 'first_name'...]
+        $searches = $_GET['value']; // ['John', 'Doe'...]
+
+        $criteria = array_combine($attributes, $searches);
+
+        $donors = $this->donorModel->search($criteria);
+
+        require_once '../src/views/search_view.php';
+    }
 }

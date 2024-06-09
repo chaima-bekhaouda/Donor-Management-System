@@ -104,3 +104,28 @@ form {
         flex: 1 1 100%;
     }
 }
+
+/* Donor list styles */
+.donor-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.donor-item {
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+.donor-item:hover {
+    background-color: #f0f0f0;
+}
+
+.donor-item a {
+    text-decoration: none;
+    color: #333;
+    display: block; /* Make the link take up the whole space of the donor-item */
+}

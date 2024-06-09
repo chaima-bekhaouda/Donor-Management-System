@@ -13,7 +13,7 @@
     <form id="search-form" action="search.php" method="get">
         <div id="criteria-container">
             <div class="criteria">
-                <select name="attribute[]">
+                <select name="criteria[]">
                     <option value="name">Name</option>
                     <option value="first_name">First Name</option>
                     <option value="email">Email</option>
@@ -21,7 +21,7 @@
                     <option value="sex">Sex</option>
                     <option value="age">Age</option>
                 </select>
-                <input type="text" name="search[]" required>
+                <input type="text" name="value[]" required>
                 <button type="button" class="remove-criteria">Remove</button>
             </div>
         </div>
