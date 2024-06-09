@@ -38,5 +38,6 @@
 </div>
 
 <script src="../assets/js/searchCriteria.js"></script>
+<script src="../assets/js/confetti.js"></script>
 </body>
 </html>

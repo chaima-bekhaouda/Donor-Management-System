@@ -31,6 +31,6 @@
         <a href="index.php">Back to Search</a>
     </div>
 </div>
-
+<script src="../assets/js/confetti.js"></script>
 </body>
 </html>

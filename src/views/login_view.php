@@ -28,6 +28,6 @@
         </div>
     </form>
 </div>
-
+<script src="../assets/js/confetti.js"></script>
 </body>
 </html>
