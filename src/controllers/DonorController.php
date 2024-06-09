@@ -1,5 +1,5 @@
 <?php
-require_once '../src/models/DonorModel.php';
+require_once __DIR__ . '/../models/DonorModel.php';
 
 class DonorController
 {

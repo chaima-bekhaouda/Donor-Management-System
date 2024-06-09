@@ -1,7 +1,7 @@
 <?php
 // Include necessary files and libraries
-require_once '../config/database.php';
-require_once '../vendor/autoload.php';
+require_once __DIR__ . '/../config/database.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 
 // Load environment variables
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');

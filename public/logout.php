@@ -1,3 +1,3 @@
 <?php
-require_once '../scripts/session_manager.php';
+require_once __DIR__ . '/../scripts/session_manager.php';
 logout();
