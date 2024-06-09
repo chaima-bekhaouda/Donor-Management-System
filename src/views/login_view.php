@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="icon" href="favicon.ico">
 </head>
 <body>
 
@@ -20,7 +21,7 @@
             <input type="password" id="password" name="password" required>
         </div>
         <?php if (isset($error)): ?>
-            <p class="error" style="color: red; margin: 0; padding: 0;"><?="Error: " . $error?></p>
+            <p class="error" style="color: red; margin: 0; padding: 0;"><?= "Error: " . $error ?></p>
         <?php endif; ?>
         <div class="button-container">
             <button type="submit">Login</button>
